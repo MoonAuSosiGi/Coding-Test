@@ -1,0 +1,50 @@
+import re
+import collections
+"""
+    A man, a plan, a canal: Panama
+
+    회문 검사
+"""
+def isPalindrome(s: str) -> bool:
+    strs = []
+    for char in s:
+        if char.isalnum():
+            strs.append(char.lower())
+    # 1.
+    # 앞부분에서 pop 이 일어나면 리스트 요소들을 전부 땡기는 과정이 있다.
+    # 따라서 그 부분에서 오버헤드가 걸림 pop(0) 이 O(n)
+    # while len(strs) > 1:
+    #     if strs.pop(0) != strs.pop():
+    #         return False
+    return True
+
+    # 2. 최적화 ( 리스트 요소 빼지 않고 확인 )
+    # startIndex = 0
+    # endIndex = len(strs) -1
+    # while startIndex <= endIndex:
+    #     if strs[startIndex] != strs[endIndex]:
+    #         return False
+    #     startIndex += 1
+    #     endIndex -= 1
+    # return True
+
+    # 3. 최적화 '데크'
+    # 앞뒤로 빼면서 비교, 1번이랑 비슷하지만 popleft()가 O(1)이라 성능이 더 좋다.
+    # strs: Deque = collections.deque()
+    # for char in s:
+    #     if char.isalnum():
+    #         strs.append(char.lower())
+    # while len(strs) > 1:
+    #     if strs.popleft() != strs.pop():
+    #         return False
+    # return True
+
+    # return True
+    # 4 슬라이싱 사용
+    s = s.lower()
+    # 정규식으로 필터링
+    s = re.sub('[^a-z0-9]', '', s)
+    return s == s[::-1]  # ::-1 슬라이싱으로 뒤집을 수 있다
+
+
+print(isPalindrome("A man, a plan, a canal: Panama"))

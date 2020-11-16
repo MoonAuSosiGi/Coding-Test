@@ -1,0 +1,14 @@
+def reverseString(s: [str]):
+    left, right = 0, len(s)-1
+    # 직접 뒤집는 경우
+    # while left < right:
+    #     s[left], s[right] = s[right], s[left]
+    #     left += 1
+    #     right -= 1
+    # 리스트 함수 이용할 경우
+    # s.reverse()
+    # 슬라이싱
+    s = s[::-1]
+    print(s)
+
+reverseString(["h","e","l","l","o"])

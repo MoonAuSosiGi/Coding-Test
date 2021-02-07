@@ -1,0 +1,19 @@
+input = "abadabac"
+
+
+def find_not_repeating_character(string):
+    checkDict = {}
+    for token in input:
+        if token in checkDict:
+            checkDict[token] += 1
+        else:
+            checkDict[token] = 1
+
+    for item in checkDict.items():
+        if item[1] == 1:
+            return item[0]
+    return "_"
+
+
+result = find_not_repeating_character(input)
+print(result)
